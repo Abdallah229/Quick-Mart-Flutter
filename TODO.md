@@ -6,10 +6,10 @@ This document tracks the development progress of the Online Food Ordering System
 
 *The foundation of the app. These must be completed before touching any feature.*
 
--  **Network Configuration (`core/network`)**
+- **Network Configuration (`core/network`)**
   -  Set up `Dio` consumer/client.
   -  Implement `ErrorInterceptor` for logging and global error catching.
-  - [ ] Create `NetworkInfo` to check internet connectivity.
+  -  Create `NetworkInfo` to check internet connectivity.
 - **Error Handling (`core/errors`)**
   - Define `Failure` classes (ServerFailure, CacheFailure, NetworkFailure).
   - Define `Exception` classes (ServerException, CacheException).
@@ -28,18 +28,18 @@ This document tracks the development progress of the Online Food Ordering System
 
 *Pure Dart. No Flutter UI, no JSON parsing. Define what the app does.*
 
-- [ ] **Auth Feature**
-  - [ ] Define `User` Entity.
-  - [ ] Define `AuthRepository` abstract class.
-  - [ ] Create Use Cases: `LoginUser`, `RegisterUser`, `LogoutUser`, `GetCachedUser`.
-- [ ] **Menu Feature**
-  - [ ] Define `Product` (Food Item) Entity.
-  - [ ] Define `MenuRepository` abstract class.
-  - [ ] Create Use Cases: `GetMenuItems` (with pagination), `SearchMenuItems`.
-- [ ] **Cart/Order Feature**
-  - [ ] Define `CartItem` and `Order` Entities.
-  - [ ] Define `CartRepository` abstract class.
-  - [ ] Create Use Cases (Full CRUD): `AddToCart` (Create), `GetCart` (Read), `UpdateCartQuantity` (Update), `RemoveFromCart` (Delete), `CheckoutOrder`.
+- **Auth Feature**
+  - Define `User` Entity.
+  - Define `AuthRepository` abstract class.
+  - Create Use Cases: `LoginUser`, `RegisterUser`, `LogoutUser`, `GetCachedUser`.
+- **Menu Feature**
+  - Define `Product` (Food Item) Entity.
+  - Define `MenuRepository` abstract class.
+  - Create Use Cases: `GetMenuItems` (with pagination), `SearchMenuItems`.
+- **Cart/Order Feature**
+  - Define `CartItem` and `Order` Entities.
+  - Define `CartRepository` abstract class.
+  - Create Use Cases (Full CRUD): `AddToCart` (Create), `GetCart` (Read), `UpdateCartQuantity` (Update), `RemoveFromCart` (Delete), `CheckoutOrder`.
 
 ## Phase 3: Data Layer (The Engine)
 
