@@ -51,8 +51,8 @@ This document tracks the development progress of the Online Food Ordering System
   - [ ] Implement `AuthLocalDataSource` (store session token).
   - [ ] Implement `AuthRepositoryImpl` mapping Data to Domain (`Either<Failure, User>`).
 - [ ] **Menu Feature**
-  - [ ] Create `ProductModel`.
-  - [ ] Implement `MenuRemoteDataSource` (fetch from `dummyjson.com/products`).
+  - Create `ProductModel`.
+  - Implement `MenuRemoteDataSource` (fetch from `dummyjson.com/products`).
   - [ ] Implement `MenuLocalDataSource` (cache menus using Hive for offline access).
   - [ ] Implement `MenuRepositoryImpl`.
 - [ ] **Cart/Order Feature**
