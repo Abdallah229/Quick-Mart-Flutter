@@ -18,4 +18,10 @@ class ApiEndpoints {
   // AUTH FEATURE ENDPOINTS (For later)
   // ==========================================
   static const String login = 'auth/login';
+
+  // ==========================================
+  // CART FEATURE ENDPOINTS (For later)
+  // ==========================================
+
+static const String cart = 'carts/1' ;
 }

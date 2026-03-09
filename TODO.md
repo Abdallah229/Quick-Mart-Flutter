@@ -50,16 +50,16 @@ This document tracks the development progress of the Online Food Ordering System
   - [ ] Implement `AuthRemoteDataSource` (using `reqres.in` or `dummyjson.com/auth`).
   - [ ] Implement `AuthLocalDataSource` (store session token).
   - [ ] Implement `AuthRepositoryImpl` mapping Data to Domain (`Either<Failure, User>`).
-- [ ] **Menu Feature**
+-  **Menu Feature**
   - Create `ProductModel`.
   - Implement `MenuRemoteDataSource` (fetch from `dummyjson.com/products`).
-  - [ ] Implement `MenuLocalDataSource` (cache menus using Hive for offline access).
-  - [ ] Implement `MenuRepositoryImpl`.
-- [ ] **Cart/Order Feature**
-  - [ ] Create `CartItemModel` and `OrderModel`.
-  - [ ] Implement `CartRemoteDataSource` (simulate via `dummyjson.com/carts`).
-  - [ ] Implement `CartLocalDataSource` (sync pending cart changes via Hive).
-  - [ ] Implement `CartRepositoryImpl`.
+  - Implement `MenuLocalDataSource` (cache menus using Hive for offline access).
+  - Implement `MenuRepositoryImpl`.
+- **Cart/Order Feature**
+  - Create `CartItemModel` and `OrderModel`.
+  - Implement `CartRemoteDataSource` (simulate via `dummyjson.com/carts`).
+  - Implement `CartLocalDataSource` (sync pending cart changes via Hive).
+  - Implement `CartRepositoryImpl`.
 
 ## Phase 4: Presentation Layer (UI & State)
 

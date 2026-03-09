@@ -14,15 +14,15 @@ class ServerException implements Exception {
 
 /// Exception thrown when a local database operation fails.
 ///
-/// This will be utilized by the LocalDataSource when Hive or SharedPreferences
-/// fails to read or write cached data (e.g., failing to save offline menu items).
-class CacheException implements Exception {
-  // TODO: Implement later when configuring hive.
-}
+/// As a strict Clean Architecture marker exception, it contains no message string.
+/// It is thrown by the Local Data Source (e.g., Hive) when reading or writing
+/// fails. The Repository catches this and maps it to a `CacheFailure` containing
+/// the actual user-facing error message.
+class CacheException implements Exception {}
 
-/// Exception thrown when the device cannot successfully communicate with the server.
+/// Exception thrown when the device cannot successfully connect to the internet.
 ///
-/// This occurs during connection timeouts, receive timeouts, or when
-/// the device has no active internet connection, preventing the API call
-/// from completing.
+/// This empty marker exception is used when the device has no active network
+/// connection, or when an API call times out before reaching the server.
+/// The Repository catches this and maps it to a `NetworkFailure`.
 class NetworkException implements Exception {}
