@@ -82,9 +82,9 @@ This document tracks the development progress of the Online Food Ordering System
 
 *Tying it all together and making it production-ready.*
 
-- [ ] Register all Feature Data Sources, Repositories, Use Cases, and BLoCs in `injection_container.dart`.
+- Register all Feature Data Sources, Repositories, Use Cases, and BLoCs in `injection_container.dart`.
 - [ ] Connect `go_router` paths to the actual UI pages.
 - [ ] Test API error handling (simulate network drops, invalid credentials).
 - [ ] Ensure memory is managed properly (dispose controllers, close streams).
-- [ ] Final UI/UX review (responsive design checks, feedback snackbars/messages).
+- [ ] Final UI/UX review (responsive design checks, feedback snack-bars/messages).
 - [ ] Clean up code (resolve all analyzer warnings, remove unused imports).
