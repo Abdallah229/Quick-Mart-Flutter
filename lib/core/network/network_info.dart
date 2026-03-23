@@ -1,4 +1,5 @@
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'dart:io';
 
 /// A contract for checking the device's internet connectivity.
 ///
@@ -20,14 +21,23 @@ abstract class NetworkInfo {
 /// external servers to verify actual data transfer capabilities, preventing false
 /// positives when connected to networks without internet access (like a captive portal).
 class NetworkInfoImpl implements NetworkInfo {
-  /// The underlying connection checker instance.
-  ///
-  /// Injected via the constructor (Dependency Injection) to allow for
-  /// centralized configuration and easy mocking during unit testing.
-  final InternetConnection internetConnection;
+  // /// The underlying connection checker instance.
+  // ///
+  // /// Injected via the constructor (Dependency Injection) to allow for
+  // /// centralized configuration and easy mocking during unit testing.
+  // final InternetConnection internetConnection;
 
-  NetworkInfoImpl({required this.internetConnection});
+  NetworkInfoImpl();
 
   @override
-  Future<bool> get isConnected => internetConnection.hasInternetAccess;
+  Future<bool> get isConnected async {
+    try {
+      // Pings dummyjson directly. If it resolves, we have internet!
+      final result = await InternetAddress.lookup('dummyjson.com');
+      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } on SocketException catch (_) {
+      // If it fails to reach the site, we are offline. No crashes.
+      return false;
+    }
+  }
 }

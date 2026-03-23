@@ -25,6 +25,9 @@ class Product extends Equatable {
   /// The network URL for the item's display image.
   final String thumbnailURL;
 
+  /// The description of the food item
+  final String description;
+
   /// Constructs a [Product] instance with all required fields.
   const Product({
     required this.id,
@@ -32,8 +35,9 @@ class Product extends Equatable {
     required this.price,
     required this.rating,
     required this.thumbnailURL,
+    required this.description,
   });
 
   @override
-  List<Object?> get props => [id, title, price, rating, thumbnailURL];
+  List<Object?> get props => [id, title, description, rating, thumbnailURL,];
 }

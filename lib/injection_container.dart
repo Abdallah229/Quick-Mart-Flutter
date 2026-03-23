@@ -114,7 +114,7 @@ Future<void> init() async {
   // ===========================================================================
 
   sl.registerLazySingleton<NetworkInfo>(
-    () => NetworkInfoImpl(internetConnection: sl()),
+    () => NetworkInfoImpl(),
   );
 
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(client: sl()));
@@ -123,7 +123,7 @@ Future<void> init() async {
   // ! EXTERNAL
   // ===========================================================================
 
-  sl.registerLazySingleton(() => InternetConnection());
+  // sl.registerLazySingleton(() => InternetConnection());
 
   sl.registerLazySingleton<Dio>(() {
     final dio = Dio(

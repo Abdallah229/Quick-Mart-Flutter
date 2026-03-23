@@ -15,6 +15,7 @@ class ProductModel extends Product {
     required super.price,
     required super.rating,
     required super.thumbnailURL,
+    required super.description,
   });
 
   /// Safely constructs a [ProductModel] from a raw JSON map.
@@ -25,11 +26,11 @@ class ProductModel extends Product {
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     // API returns int, we convert to String for our Domain logic
     id: json['id'].toString(),
-    title: json['title'] as String,
-    // API might return an int (e.g., 20) instead of a double (20.0)
-    price: (json['price'] as num).toDouble(),
-    rating: (json['rating'] as num).toDouble(),
-    thumbnailURL: json['thumbnail'] as String,
+    title: json['title'] as String ?? 'Unknown Item',
+    description: json['description'] as String? ?? '',
+    price: (json['price'] as num)?.toDouble() ?? 0.0,
+    rating: (json['rating'] as num)?.toDouble() ?? 0.0,
+    thumbnailURL: json['thumbnail'] as String ?? '',
   );
 
   /// Converts the [ProductModel] back into a JSON map.
@@ -40,6 +41,7 @@ class ProductModel extends Product {
     return {
       'id': id,
       'title': title,
+      'description': description,
       'price': price,
       'rating': rating,
       'thumbnail': thumbnailURL, // Mapping our variable back to the API's key
