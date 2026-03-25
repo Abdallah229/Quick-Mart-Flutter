@@ -20,17 +20,21 @@ class ProductModel extends Product {
 
   /// Safely constructs a [ProductModel] from a raw JSON map.
   ///
-  /// It includes defensive parsing strategies (like using `num.toDouble()`)
+  /// It includes defensive parsing strategies (like using `num?.toDouble()`)
   /// to prevent runtime crashes caused by unexpected type variations from
   /// the backend API.
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-    // API returns int, we convert to String for our Domain logic
-    id: json['id'].toString(),
-    title: json['title'] as String ?? 'Unknown Item',
+    // Safely use ?. to prevent crashes if id is entirely missing
+    id: json['id']?.toString() ?? '0',
+
+    // MUST use 'as String?' so it doesn't crash before hitting the ?? fallback
+    title: json['title'] as String? ?? 'Unknown Item',
     description: json['description'] as String? ?? '',
-    price: (json['price'] as num)?.toDouble() ?? 0.0,
-    rating: (json['rating'] as num)?.toDouble() ?? 0.0,
-    thumbnailURL: json['thumbnail'] as String ?? '',
+
+    // MUST use 'as num?' so it doesn't crash on null before converting to double
+    price: (json['price'] as num?)?.toDouble() ?? 0.0,
+    rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
+    thumbnailURL: json['thumbnail'] as String? ?? '',
   );
 
   /// Converts the [ProductModel] back into a JSON map.

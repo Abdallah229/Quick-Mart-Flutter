@@ -45,7 +45,7 @@ class CartCheckoutButton extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${state.totalPrice.toStringAsFixed(2)} EGP',
+                      '${state.totalPrice.toStringAsFixed(2)} \$',
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,

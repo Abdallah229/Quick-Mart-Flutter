@@ -14,7 +14,7 @@ class CartListItem extends StatelessWidget {
     final theme = Theme.of(context);
     return ListTile(
       title: Text(item.product.title),
-      subtitle: Text('${item.product.price.toStringAsFixed(2)} EGP'),
+      subtitle: Text('${item.product.price.toStringAsFixed(2)} \$'),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Image.network(

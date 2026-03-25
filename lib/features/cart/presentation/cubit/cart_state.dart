@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:food_ordering_system/core/enums/cart_action.dart';
 import 'package:food_ordering_system/core/enums/request_state.dart';
 import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
 
@@ -18,12 +19,15 @@ class CartState extends Equatable {
   /// A human-readable error message, populated only if [status] is [RequestState.error].
   final String errorMessage;
 
+  final CartAction lastAction;
+
   /// Constructs the state with clean, sensible defaults.
   /// The cart starts completely empty and in an initial, idle status.
   const CartState({
     this.items = const [],
     this.status = RequestState.initial,
     this.errorMessage = '',
+    this.lastAction = CartAction.none,
   });
 
   /// Dynamically calculates the total price of the cart.
@@ -33,7 +37,7 @@ class CartState extends Equatable {
   double get totalPrice {
     return items.fold(
       0.0,
-          (sum, item) => sum + (item.product.price * item.quantity),
+      (sum, item) => sum + (item.product.price * item.quantity),
     );
   }
 
@@ -46,14 +50,16 @@ class CartState extends Equatable {
     List<CartItem>? items,
     RequestState? status,
     String? errorMessage,
+    CartAction? lastAction,
   }) {
     return CartState(
       items: items ?? this.items,
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
+      lastAction: lastAction ?? CartAction.none,
     );
   }
 
   @override
-  List<Object?> get props => [items, status, errorMessage];
+  List<Object?> get props => [items, status, errorMessage, lastAction];
 }

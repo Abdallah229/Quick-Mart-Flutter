@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:food_ordering_system/features/cart/presentation/cubit/cart_state.dart';
 
+import '../../../cart/presentation/pages/cart_screen.dart';
+
 /// The custom AppBar for the Menu Screen.
 ///
 /// Implements [PreferredSizeWidget] so it can be used natively in a Scaffold.
@@ -36,7 +38,7 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: IconButton(
                 onPressed: () {
                   // TODO: Navigate to the Cart Screen
-                  // Navigator.push(context, MaterialPageRoute(builder: (_) => const CartScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const CartScreen()));
                 },
                 // The Badge widget is a fantastic built-in Material 3 feature
                 icon: Badge(

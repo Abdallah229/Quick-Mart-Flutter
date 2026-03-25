@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_ordering_system/core/enums/cart_action.dart';
 import 'package:food_ordering_system/core/enums/request_state.dart';
 import 'package:food_ordering_system/features/cart/domain/usecases/add_to_cart.dart';
 import 'package:food_ordering_system/features/cart/domain/usecases/checkout_order.dart';
@@ -39,15 +40,16 @@ class CartCubit extends Cubit<CartState> {
     final result = await getCartItemsUseCase();
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(
           state.copyWith(
             status: RequestState.error,
             errorMessage: failure.message,
+            lastAction: CartAction.fetch,
           ),
         );
       },
-          (cartItems) {
+      (cartItems) {
         // Replaces the items entirely to stay perfectly synced with the database
         emit(state.copyWith(status: RequestState.success, items: cartItems));
       },
@@ -62,15 +64,17 @@ class CartCubit extends Cubit<CartState> {
     final result = await addToCartUseCase(product: product, quantity: quantity);
 
     await result.fold(
-          (failure) async { // Ensure the fold handler is async to properly emit/await
+      (failure) async {
+        // Ensure the fold handler is async to properly emit/await
         emit(
           state.copyWith(
             status: RequestState.error,
             errorMessage: failure.message,
+            lastAction: CartAction.add,
           ),
         );
       },
-          (_) async {
+      (_) async {
         // Silently pull the updated database state to refresh the UI
         await getCart();
       },
@@ -82,15 +86,16 @@ class CartCubit extends Cubit<CartState> {
     final result = await removeCartItemUseCase(productId: productId);
 
     await result.fold(
-          (failure) async {
+      (failure) async {
         emit(
           state.copyWith(
             status: RequestState.error,
             errorMessage: failure.message,
+            lastAction: CartAction.delete,
           ),
         );
       },
-          (_) async {
+      (_) async {
         await getCart();
       },
     );
@@ -106,15 +111,16 @@ class CartCubit extends Cubit<CartState> {
     );
 
     await result.fold(
-          (failure) async {
+      (failure) async {
         emit(
           state.copyWith(
             status: RequestState.error,
             errorMessage: failure.message,
+            lastAction: CartAction.update,
           ),
         );
       },
-          (_) async {
+      (_) async {
         await getCart();
       },
     );
@@ -127,7 +133,7 @@ class CartCubit extends Cubit<CartState> {
     final result = await checkoutUseCase();
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(
           state.copyWith(
             status: RequestState.error,
@@ -135,9 +141,15 @@ class CartCubit extends Cubit<CartState> {
           ),
         );
       },
-          (_) {
+      (_) {
         // On a successful checkout, we clear the cart items from the screen
-        emit(state.copyWith(items: const [], status: RequestState.success));
+        emit(
+          state.copyWith(
+            items: const [],
+            status: RequestState.success,
+            lastAction: CartAction.checkout,
+          ),
+        );
       },
     );
   }

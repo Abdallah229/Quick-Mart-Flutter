@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_ordering_system/core/enums/cart_action.dart';
 import 'package:food_ordering_system/core/enums/request_state.dart';
+import 'package:food_ordering_system/core/utils/show_snack_bar.dart';
 import 'package:food_ordering_system/core/widgets/loading_indicator.dart';
 import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:food_ordering_system/features/cart/presentation/cubit/cart_state.dart';
@@ -21,7 +23,16 @@ class CartScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-          child: BlocBuilder<CartCubit, CartState>(
+          child: BlocConsumer<CartCubit, CartState>(
+            listener: (context, state) {
+              if (state.status == RequestState.success &&
+                  state.lastAction == CartAction.checkout) {
+                showSnackBar(
+                  context: context,
+                  description: 'Your order has been placed successfully',
+                );
+              }
+            },
             builder: (context, state) {
               switch (state.status) {
                 case RequestState.initial:
