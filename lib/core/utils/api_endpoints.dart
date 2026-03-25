@@ -11,6 +11,7 @@ class ApiEndpoints {
   // ==========================================
   // MENU FEATURE ENDPOINTS
   // ==========================================
+  static const String food = 'products/category/groceries';
   static const String products = 'products';
   static const String searchProducts = 'products/search';
 
@@ -23,5 +24,5 @@ class ApiEndpoints {
   // CART FEATURE ENDPOINTS (For later)
   // ==========================================
 
-static const String cart = 'carts/1' ;
+  static const String cart = 'carts/1';
 }

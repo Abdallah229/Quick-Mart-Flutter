@@ -23,7 +23,7 @@ class MenuRemoteDataSourceImp implements MenuRemoteDataSource {
     // 2. Make the API call
     final response =
         await apiConsumer.get(
-              ApiEndpoints.products,
+              ApiEndpoints.food,
               queryParameters: {'limit': limit, 'skip': skip},
             )
             as Map<String, dynamic>;

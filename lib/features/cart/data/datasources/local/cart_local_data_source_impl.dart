@@ -2,7 +2,7 @@ import 'package:food_ordering_system/core/errors/exceptions/exceptions.dart';
 import 'package:food_ordering_system/features/cart/data/datasources/local/cart_local_data_source.dart';
 import 'package:food_ordering_system/features/cart/data/models/order_model.dart';
 import 'package:hive/hive.dart';
-
+import 'dart:convert';
 /// The concrete implementation of [CartLocalDataSource] using Hive.
 ///
 /// This acts as a dumb storage mechanism. It holds the user's active
@@ -33,7 +33,7 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
       final cachedData = box.values.first;
 
       // 2. Safely cast the dynamic Hive map to a String map
-      final jsonMap = Map<String, dynamic>.from(cachedData as Map);
+      final jsonMap = jsonDecode(cachedData as String )as Map <String, dynamic>;
 
       // 3. Return the parsed Model
       return Future.value(OrderModel.fromJson(jsonMap));
@@ -49,7 +49,7 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
       await box.clear();
 
       // 2. Save the primitive JSON map to Hive, NOT the Dart object!
-      await box.put(order.id, order.toJson());
+      await box.put(order.id, jsonEncode(order.toJson()));
     } catch (e) {
       throw CacheException();
     }

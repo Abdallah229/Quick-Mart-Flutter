@@ -130,29 +130,22 @@ class CartRepositoryImpl implements CartRepository {
 
   /// Retrieves the current list of items in the user's cart.
   ///
-  /// Prioritizes the local offline cache. If the local cache is empty,
-  /// it will attempt to fetch an existing cart from the remote server
-  /// and immediately cache it locally for future offline mutations.
+  /// Currently relies STRICTLY on the local offline cache (Hive).
+  /// We bypass the remote DummyJSON cart endpoint because it returns
+  /// mock data that would overwrite the user's actual local selections.
   @override
   Future<Either<Failure, List<CartItem>>> getCartItems() async {
     try {
-      // 1. Always prioritize the user's active offline cart first
+      // 1. Try to grab the user's saved cart from Hive
       final localCart = await localDataSource.getCachedCart();
       return Right(localCart.items);
     } on CacheException {
-      // 2. If no local cart exists, and they are online, fetch from server
-      if (await networkInfo.isConnected) {
-        try {
-          final remoteCart = await remoteDataSource.getRemoteCart();
-          await localDataSource.saveCart(order: remoteCart); // Cache it immediately!
-          return Right(remoteCart.items);
-        } on ServerException catch (e) {
-          return Left(ServerFailure(message: e.errorModel.message));
-        }
-      } else {
-        // 3. Offline and no local cart = an empty cart
-        return const Right([]);
-      }
+      // 2. If Hive throws a CacheException, it just means the box is empty.
+      // The user hasn't added any food yet! Return an empty list.
+      return const Right([]);
+    } catch (e) {
+      // 3. A safety net just in case something else goes horribly wrong reading the disk
+      return const Left(CacheFailure(message: 'Failed to load your cart.'));
     }
   }
 
