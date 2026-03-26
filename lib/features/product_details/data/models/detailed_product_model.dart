@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:food_ordering_system/features/product_details/data/models/review_model.dart';
 import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
 
@@ -43,4 +45,21 @@ class DetailedProductModel extends DetailedProduct {
 
     tags: (json['tags'] as List<dynamic>?)?.map((e) => e.toString()).toList() ?? [],
   );
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'price': price,
+      'rating': rating,
+      'thumbnail': thumbnailURL,
+      'description': description,
+      'images': images,
+      'brand': brand,
+      'stock': stock,
+      'reviews': reviews.map((e) => (e as ReviewModel).toJson()).toList(),
+      'tags': tags,
+    };
+  }
 }
