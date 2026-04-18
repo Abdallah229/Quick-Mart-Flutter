@@ -17,6 +17,7 @@ void main() async {
   // 3. Open the specific physical boxes on the disk so our Data Sources can use them
   await Hive.openBox<dynamic>(HiveBoxes.menuBoxName);
   await Hive.openBox<dynamic>(HiveBoxes.cartBoxName);
+  await Hive.openBox<dynamic>(HiveBoxes.detailedProductsBoxName);
 
   // 4. Boot up the Dependency Injection Service Locator (get_it)
   await di.init();

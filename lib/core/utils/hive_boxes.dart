@@ -8,9 +8,11 @@ class HiveBoxes {
   /// The physical string name of the Hive box stored on the device disk.
   static const String cartBoxName = 'cart_cache';
   static const String menuBoxName = 'menu_cache';
+  static const String detailedProductsBoxName = 'detailed_products_cache';
 
   /// The unique identifier used by `get_it` to differentiate between
   /// multiple registered instances of `Box<dynamic>`.
   static const String cartBoxInstanceName = 'CartBox';
   static const String menuBoxInstanceName = 'MenuBox';
+  static const String detailedProductsInstanceName = 'DetailedProductsBox';
 }

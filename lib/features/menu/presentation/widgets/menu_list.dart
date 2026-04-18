@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
 import 'package:food_ordering_system/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:food_ordering_system/features/menu/presentation/widgets/menu_item.dart';
+import 'package:food_ordering_system/features/product_details/presentation/pages/product_details_screen.dart';
 
 /// Renders the scrollable grid of food items and handles Infinite Scrolling.
 class MenuList extends StatefulWidget {
@@ -29,7 +30,6 @@ class _MenuListState extends State<MenuList> {
     // If we are near the bottom of the list (within 200 pixels)
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-
       _currentPage++;
       // Ask the Cubit to fetch the next page!
       context.read<MenuCubit>().getMenu(page: _currentPage);
@@ -55,7 +55,20 @@ class _MenuListState extends State<MenuList> {
         childAspectRatio: 0.75, // Adjusts the height of the cards
       ),
       itemBuilder: (context, index) {
-        return MenuItem(product: widget.products[index]);
+        // TODO : this might fire an exception for now
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    ProductDetailsScreen(productID: widget.products[index].id),
+              ),
+            );
+          },
+
+          child: MenuItem(product: widget.products[index]),
+        );
       },
     );
   }

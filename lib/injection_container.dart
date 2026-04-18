@@ -1,7 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:food_ordering_system/features/product_details/data/datasources/local/product_details_local_data_source.dart';
+import 'package:food_ordering_system/features/product_details/data/datasources/local/product_details_local_data_source_impl.dart';
+import 'package:food_ordering_system/features/product_details/data/datasources/remote/product_details_remote_data_source_impl.dart';
+import 'package:food_ordering_system/features/product_details/data/repositories/product_details_repository_impl.dart';
+import 'package:food_ordering_system/features/product_details/domain/repositories/product_details_repository.dart';
+import 'package:food_ordering_system/features/product_details/domain/usecases/get_product_details.dart';
+import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:food_ordering_system/core/network/api_consumer.dart';
 import 'package:food_ordering_system/core/network/dio_consumer.dart';
 import 'package:food_ordering_system/core/network/network_info.dart';
@@ -28,6 +34,8 @@ import 'package:food_ordering_system/features/cart/domain/usecases/get_cart_item
 import 'package:food_ordering_system/features/cart/domain/usecases/remove_cart_item.dart';
 import 'package:food_ordering_system/features/cart/domain/usecases/update_item_quantity.dart';
 import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
+
+import 'features/product_details/data/datasources/remote/product_details_remote_data_source.dart';
 
 final sl = GetIt.instance; // Service Locator
 
@@ -108,14 +116,34 @@ Future<void> init() async {
       box: sl(instanceName: HiveBoxes.cartBoxInstanceName),
     ),
   );
+  // ===========================================================================
+  // ! FEATURES - PRODUCT DETAILS
+  // ===========================================================================
+  sl.registerFactory(() => ProductDetailsCubit(getProductDetailsUseCase: sl()));
+  sl.registerLazySingleton(() => GetProductDetailsUseCase(repository: sl()));
 
+  sl.registerLazySingleton<ProductDetailsRepository>(
+    () => ProductDetailsRepositoryImpl(
+      networkInfo: sl(),
+      localDataSource: sl(),
+      remoteDataSource: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<ProductDetailsRemoteDataSource>(
+    () => ProductDetailsRemoteDataSourceImpl(apiConsumer: sl()),
+  );
+
+  sl.registerLazySingleton<ProductDetailsLocalDataSource>(
+    () => ProductDetailsLocalDataSourceImpl(
+      sl(instanceName: HiveBoxes.detailedProductsInstanceName),
+    ),
+  );
   // ===========================================================================
   // ! CORE
   // ===========================================================================
 
-  sl.registerLazySingleton<NetworkInfo>(
-    () => NetworkInfoImpl(),
-  );
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());
 
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(client: sl()));
 
@@ -157,5 +185,13 @@ Future<void> init() async {
   sl.registerLazySingleton<Box<dynamic>>(
     () => cartBox,
     instanceName: HiveBoxes.cartBoxInstanceName,
+  );
+
+  final detailedProductsBox = Hive.box<dynamic>(
+    HiveBoxes.detailedProductsBoxName,
+  );
+  sl.registerLazySingleton<Box<dynamic>>(
+    () => detailedProductsBox,
+    instanceName: HiveBoxes.detailedProductsInstanceName,
   );
 }
