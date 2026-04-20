@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_ordering_system/core/theming/themes/dark_theme.dart';
+import 'package:food_ordering_system/core/theming/themes/light_theme.dart';
 import 'package:food_ordering_system/features/menu/presentation/pages/main_shell_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -43,13 +45,10 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        darkTheme: darkTheme,
         title: 'Food Ordering App',
         debugShowCheckedModeBanner: false, // Hides the annoying debug banner
-        theme: ThemeData(
-          // Material 3 color seed makes the whole app look cohesive instantly
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-          useMaterial3: true,
-        ),
+        theme: lightTheme,
         home: const MainShellScreen(),
       ),
     );
