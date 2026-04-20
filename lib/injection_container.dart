@@ -36,7 +36,12 @@ import 'package:quick_mart/features/cart/domain/usecases/update_item_quantity.da
 import 'package:quick_mart/features/cart/presentation/cubit/cart_cubit.dart';
 
 import 'features/product_details/data/datasources/remote/product_details_remote_data_source.dart';
-
+/// The centralized Service Locator for Dependency Injection.
+///
+/// Utilizes [GetIt] to register and provide all application dependencies across
+/// the Clean Architecture boundaries. This includes State Management (Cubits),
+/// Business Logic (UseCases), Data Contracts (Repositories), and External
+/// APIs (DataSources). Ensures singletons and factories are cleanly instantiated.
 final sl = GetIt.instance; // Service Locator
 
 Future<void> init() async {
