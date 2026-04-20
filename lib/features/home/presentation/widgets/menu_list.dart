@@ -5,6 +5,8 @@ import 'package:quick_mart/features/home/presentation/cubit/menu_cubit.dart';
 import 'package:quick_mart/features/home/presentation/widgets/menu_item.dart';
 import 'package:quick_mart/features/product_details/presentation/pages/product_details_screen.dart';
 
+import '../../../../core/widgets/responsive_layout.dart';
+
 /// Renders the scrollable grid of food items and handles Infinite Scrolling.
 class MenuList extends StatefulWidget {
   final List<Product> products;
@@ -44,15 +46,22 @@ class _MenuListState extends State<MenuList> {
 
   @override
   Widget build(BuildContext context) {
+    // 🚀 Dynamically set columns to prevent massive stretched images on tablets
+    final isTablet = ResponsiveLayout.isTablet(context);
+    final isDesktop = ResponsiveLayout.isDesktop(context);
+
+    int columns = 2;
+    if (isTablet) columns = 4;
+    if (isDesktop) columns = 6;
+
     return GridView.builder(
       controller: _scrollController,
       itemCount: widget.products.length,
-      // Added spacing so the cards don't touch each other
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: columns, // Applied here!
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 0.75, // Adjusts the height of the cards
+        childAspectRatio: 0.75,
       ),
       itemBuilder: (context, index) {
         // TODO : this might fire an exception for now

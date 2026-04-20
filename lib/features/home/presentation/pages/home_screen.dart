@@ -10,8 +10,8 @@ import 'package:quick_mart/features/home/presentation/widgets/menu_list.dart';
 import 'package:quick_mart/features/home/presentation/widgets/when_empty_menu.dart';
 import 'package:quick_mart/features/home/presentation/widgets/when_menu_error.dart';
 
-class MenuScreen extends StatelessWidget {
-  const MenuScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

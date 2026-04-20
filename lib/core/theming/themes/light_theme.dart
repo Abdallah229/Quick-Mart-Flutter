@@ -45,5 +45,13 @@ ThemeData get lightTheme {
       shadowColor: Colors.black.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
+    navigationRailTheme: const NavigationRailThemeData(
+      backgroundColor: LightColors.surface,
+      selectedIconTheme: IconThemeData(color: LightColors.primary),
+      unselectedIconTheme: IconThemeData(color: LightColors.onSurfaceVariant),
+      selectedLabelTextStyle: TextStyle(color: LightColors.primary, fontWeight: FontWeight.bold),
+      unselectedLabelTextStyle: TextStyle(color: LightColors.onSurfaceVariant),
+      groupAlignment: 0.0,
+    ),
   );
 }
