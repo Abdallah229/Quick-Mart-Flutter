@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_ordering_system/features/menu/presentation/pages/main_shell_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:food_ordering_system/core/utils/hive_boxes.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
           useMaterial3: true,
         ),
-        home: const MenuScreen(),
+        home: const MainShellScreen(),
       ),
     );
   }

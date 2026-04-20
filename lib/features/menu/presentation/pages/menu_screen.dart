@@ -9,62 +9,58 @@ import 'package:food_ordering_system/features/menu/presentation/widgets/menu_app
 import 'package:food_ordering_system/features/menu/presentation/widgets/menu_list.dart';
 import 'package:food_ordering_system/features/menu/presentation/widgets/when_empty_menu.dart';
 import 'package:food_ordering_system/features/menu/presentation/widgets/when_menu_error.dart';
-import 'package:food_ordering_system/injection_container.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<MenuCubit>()..getMenu(page: 1),
-      child: Scaffold(
-        appBar: const MenuAppBar(title: 'Market'),
-        body: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(height: 16),
-              const CategoryFilterRow(),
-              const SizedBox(height: 16),
+    return Scaffold(
+      appBar: const MenuAppBar(title: 'Market'),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            const CategoryFilterRow(),
+            const SizedBox(height: 16),
 
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: BlocBuilder<MenuCubit, MenuState>(
-                    builder: (context, state) {
-                      switch (state.status) {
-                        case RequestState.initial:
-                          return const SizedBox.shrink();
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: BlocBuilder<MenuCubit, MenuState>(
+                  builder: (context, state) {
+                    switch (state.status) {
+                      case RequestState.initial:
+                        return const SizedBox.shrink();
 
-                        case RequestState.loading:
-                          if (state.products.isEmpty) {
-                            return const LoadingIndicator();
-                          } else {
-                            return MenuList(products: state.products);
-                          }
+                      case RequestState.loading:
+                        if (state.products.isEmpty) {
+                          return const LoadingIndicator();
+                        } else {
+                          return MenuList(products: state.products);
+                        }
 
-                        case RequestState.success:
-                          if (state.products.isEmpty) {
-                            return const WhenEmptyMenu();
-                          } else {
-                            return MenuList(products: state.products);
-                          }
+                      case RequestState.success:
+                        if (state.products.isEmpty) {
+                          return const WhenEmptyMenu();
+                        } else {
+                          return MenuList(products: state.products);
+                        }
 
-                        case RequestState.error:
-                          if (state.products.isEmpty) {
-                            return WhenMenuError(
-                              errorMessage: state.errorMessage,
-                            );
-                          } else {
-                            return MenuList(products: state.products);
-                          }
-                      }
-                    },
-                  ),
+                      case RequestState.error:
+                        if (state.products.isEmpty) {
+                          return WhenMenuError(
+                            errorMessage: state.errorMessage,
+                          );
+                        } else {
+                          return MenuList(products: state.products);
+                        }
+                    }
+                  },
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
