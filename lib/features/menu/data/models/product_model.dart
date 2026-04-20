@@ -16,6 +16,7 @@ class ProductModel extends Product {
     required super.rating,
     required super.thumbnailURL,
     required super.description,
+    required super.category,
   });
 
   /// Safely constructs a [ProductModel] from a raw JSON map.
@@ -26,10 +27,10 @@ class ProductModel extends Product {
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     // Safely use ?. to prevent crashes if id is entirely missing
     id: json['id']?.toString() ?? '0',
-
     // MUST use 'as String?' so it doesn't crash before hitting the ?? fallback
     title: json['title'] as String? ?? 'Unknown Item',
     description: json['description'] as String? ?? '',
+    category: json['category'] as String? ?? 'general',
 
     // MUST use 'as num?' so it doesn't crash on null before converting to double
     price: (json['price'] as num?)?.toDouble() ?? 0.0,
@@ -49,6 +50,7 @@ class ProductModel extends Product {
       'price': price,
       'rating': rating,
       'thumbnail': thumbnailURL, // Mapping our variable back to the API's key
+      'category':category,
     };
   }
 }

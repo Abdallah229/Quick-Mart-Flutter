@@ -37,7 +37,6 @@ class _ProductDetailsImagePartState extends State<ProductDetailsImagePart> {
         AspectRatio(
           aspectRatio: 4 / 3, // Width is 4, Height is 3. Adjust as needed (e.g., 1/1 for squares)
           child: PageView.builder(
-            scrollDirection: Axis.horizontal,
             itemCount: widget.images.length,
             onPageChanged: _changeIndex,
             itemBuilder: (context, index) {

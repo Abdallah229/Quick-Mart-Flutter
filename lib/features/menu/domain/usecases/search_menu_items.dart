@@ -20,7 +20,13 @@ class SearchMenuItems {
   /// Forwards the search [query] to the repository and returns a [Future]
   /// containing either a [Failure] or a successful `List<Product>` that
   /// match the search criteria.
-  Future<Either<Failure, List<Product>>> call({required String query}) async {
-    return await repository.searchMenuItems(query: query);
+  Future<Either<Failure, List<Product>>> call({
+    required String query,
+    required String categorySlug,
+  }) async {
+    return await repository.searchMenuItems(
+      query: query,
+      categorySlug: categorySlug,
+    );
   }
 }

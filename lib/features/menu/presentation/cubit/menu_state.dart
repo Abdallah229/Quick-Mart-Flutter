@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:food_ordering_system/core/enums/request_state.dart';
+import 'package:food_ordering_system/features/menu/domain/entities/category_item.dart';
 import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
+
+import '../../../../core/constants/app_categories.dart';
 
 /// The unified state object for the Menu feature.
 ///
@@ -23,12 +26,17 @@ class MenuState extends Equatable {
   /// If true, the UI should stop showing the pagination loading spinner.
   final bool hasReachedMax;
 
+  final CategoryItem selectedCategory;
+  final String searchQuery;
+
   /// Constructor with sensible defaults so the initial state is completely clean.
   const MenuState({
     this.products = const [],
     this.status = RequestState.initial,
     this.errorMessage = '',
     this.hasReachedMax = false,
+    this.selectedCategory = AppCategories.allCategory,
+    this.searchQuery = '',
   });
 
   /// Creates a new instance of the state by copying existing values and
@@ -38,15 +46,26 @@ class MenuState extends Equatable {
     RequestState? status,
     String? errorMessage,
     bool? hasReachedMax,
+    CategoryItem? selectedCategory,
+    String? searchQuery,
   }) {
     return MenuState(
       products: products ?? this.products,
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      selectedCategory: selectedCategory ?? this.selectedCategory,
+      searchQuery: searchQuery ?? this.searchQuery,
     );
   }
 
   @override
-  List<Object?> get props => [products, status, errorMessage, hasReachedMax];
+  List<Object?> get props => [
+    products,
+    status,
+    errorMessage,
+    hasReachedMax,
+    selectedCategory,
+    searchQuery,
+  ];
 }

@@ -25,6 +25,9 @@ class Product extends Equatable {
   /// The network URL for the item's display image.
   final String thumbnailURL;
 
+  /// The Category type of the item.
+  final String category;
+
   /// The description of the food item
   final String description;
 
@@ -36,8 +39,9 @@ class Product extends Equatable {
     required this.rating,
     required this.thumbnailURL,
     required this.description,
+    required this.category,
   });
 
   @override
-  List<Object?> get props => [id, title, description, rating, thumbnailURL,];
+  List<Object?> get props => [id, title, description, rating, thumbnailURL ,category];
 }

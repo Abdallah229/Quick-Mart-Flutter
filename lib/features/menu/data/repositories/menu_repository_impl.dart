@@ -21,13 +21,17 @@ class MenuRepositoryImpl implements MenuRepository {
   @override
   Future<Either<Failure, List<Product>>> getMenuItems({
     required int page,
+    String? categorySlug,
   }) async {
     if (await networkInfo.isConnected) {
       // ONLINE: Fetch from API, cache it, return it.
       try {
-        final remoteData = await remoteDataSource.getMenuItems(page: page);
+        final remoteData = await remoteDataSource.getMenuItems(
+          page: page,
+          categorySlug: categorySlug,
+        );
         // Save the fresh data to Hive!
-        await localDataSource.cacheMenuItems( menuToCache: remoteData);
+        await localDataSource.cacheMenuItems(menuToCache: remoteData);
         return Right(remoteData);
       } on ServerException catch (e) {
         // The server is throwing an error (e.g. 500)
@@ -40,7 +44,11 @@ class MenuRepositoryImpl implements MenuRepository {
         return Right(localData);
       } on CacheException {
         // Hive is empty and the user is offline
-        return const Left(CacheFailure(message: 'No local data found. Please connect to the internet.'));
+        return const Left(
+          CacheFailure(
+            message: 'No local data found. Please connect to the internet.',
+          ),
+        );
       }
     }
   }
@@ -48,12 +56,22 @@ class MenuRepositoryImpl implements MenuRepository {
   @override
   Future<Either<Failure, List<Product>>> searchMenuItems({
     required String query,
+    required String categorySlug,
   }) async {
     if (await networkInfo.isConnected) {
       // ONLINE: Let the backend handle the search
       try {
         final remoteData = await remoteDataSource.searchMenuItems(query: query);
-        return Right(remoteData);
+        final strictData = remoteData.where((product) {
+          final matchesTitle = product.title.toLowerCase().contains(
+            query.toLowerCase(),
+          );
+          final matchesCategory =
+              categorySlug == 'all' || product.category == categorySlug;
+          return matchesTitle && matchesCategory;
+        }).toList();
+
+        return Right(strictData);
       } on ServerException catch (e) {
         return Left(ServerFailure(message: e.errorModel.message));
       }
@@ -62,14 +80,23 @@ class MenuRepositoryImpl implements MenuRepository {
       try {
         final localData = await localDataSource.getCachedMenuItems();
 
-        // Execute the local filtering algorithm
-        final filteredData = localData.where((product) {
-          return product.title.toLowerCase().contains(query.toLowerCase());
-        }).toList();
+        // Ensure the offline search follows the exact same strict rules
+        final strictData = localData.where((product) {
+          final matchesTitle = product.title.toLowerCase().contains(
+            query.toLowerCase(),
+          );
+          final matchesCategory =
+              categorySlug == 'all' || product.category == categorySlug;
 
-        return Right(filteredData);
+          return matchesTitle && matchesCategory;
+        }).toList();
+        return Right(strictData);
       } on CacheException {
-        return const Left(CacheFailure(message: 'Cannot search while offline with an empty cache.'));
+        return const Left(
+          CacheFailure(
+            message: 'Cannot search while offline with an empty cache.',
+          ),
+        );
       }
     }
   }
