@@ -5,6 +5,7 @@ import 'package:food_ordering_system/features/cart/presentation/pages/cart_scree
 import 'package:food_ordering_system/features/explore/presentation/pages/explore_screen.dart';
 import 'package:food_ordering_system/features/menu/presentation/cubit/menu_cubit.dart';
 import 'package:food_ordering_system/features/menu/presentation/pages/menu_screen.dart';
+import 'package:food_ordering_system/features/profile/presentation/pages/profile_screen.dart';
 
 import '../../../../injection_container.dart';
 import '../../../cart/presentation/cubit/cart_state.dart';
@@ -36,7 +37,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
             const MenuScreen(),
             ExploreScreen(onNavigateToTab: _onTabTapped),
             const CartScreen(),
-            const Placeholder(), // TODO: Build Profile Screen
+            const ProfileScreen(),
           ],
         ),
         bottomNavigationBar: BlocBuilder<CartCubit, CartState>(
