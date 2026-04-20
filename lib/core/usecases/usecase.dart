@@ -3,10 +3,14 @@ import 'package:equatable/equatable.dart';
 
 import 'package:quick_mart/core/errors/failures/failures.dart';
 
-/// Base UseCase class to enforce a standard contract across all domain use cases.
+/// The foundational blueprint for all UseCases in the application.
 ///
-/// [Type] is the expected successful return type.
-/// [Params] represents the required input parameters wrapped in an object.
+/// [Type] defines the successful return data type of the UseCase.
+/// [Params] defines the specific arguments required to execute the logic.
+///
+/// By enforcing a strict `call` method, this ensures all business logic
+/// flows through a standardized execution pipeline, always returning a
+/// functional [Either] containing a Failure or the expected Data.
 abstract class UseCase<Type, Params> {
   /// Executes the use case.
   Future<Either<Failure, Type>> call(Params params);
