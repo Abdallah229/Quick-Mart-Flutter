@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/product_details/domain/usecases/get_product_details.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_state.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/product_details/domain/usecases/get_product_details.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_state.dart';
 
 /// State management controller for the Product Details screen.
 ///
@@ -14,7 +14,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   /// Initializes the Cubit with the required [GetProductDetailsUseCase]
   /// and sets the initial state.
   ProductDetailsCubit({required this.getProductDetailsUseCase})
-      : super(const ProductDetailsState());
+    : super(const ProductDetailsState());
 
   /// Fetches the details for a specific product and updates the state.
   ///
@@ -29,7 +29,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
     );
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(
           state.copyWith(
             status: RequestState.error,
@@ -37,13 +37,8 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
           ),
         );
       },
-          (success) {
-        emit(
-          state.copyWith(
-            status: RequestState.success,
-            product: success,
-          ),
-        );
+      (success) {
+        emit(state.copyWith(status: RequestState.success, product: success));
       },
     );
   }

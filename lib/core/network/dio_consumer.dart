@@ -1,4 +1,4 @@
-import 'package:food_ordering_system/core/network/api_consumer.dart';
+import 'package:quick_mart/core/network/api_consumer.dart';
 import 'package:dio/dio.dart';
 import '../errors/error_message_model.dart';
 import '../errors/exceptions/exceptions.dart';
@@ -30,10 +30,10 @@ class DioConsumer implements ApiConsumer {
   /// it is caught here and converted to a safe fallback [ServerException].
   @override
   Future<dynamic> delete(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       final response = await client.delete<dynamic>(
         path,
@@ -61,9 +61,9 @@ class DioConsumer implements ApiConsumer {
   /// ensuring a uniform error architecture across all network calls.
   @override
   Future<dynamic> get(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-      }) async {
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       final response = await client.get<dynamic>(
         path,
@@ -88,11 +88,11 @@ class DioConsumer implements ApiConsumer {
   /// which is necessary for file or image uploads.
   @override
   Future<dynamic> post(
-      String path, {
-        dynamic data,
-        bool isFormData = false,
-        Map<String, dynamic>? queryParameters,
-      }) async {
+    String path, {
+    dynamic data,
+    bool isFormData = false,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       if (isFormData) {
         data = FormData.fromMap(data as Map<String, dynamic>);
@@ -120,11 +120,11 @@ class DioConsumer implements ApiConsumer {
   /// standard custom exception routing.
   @override
   Future<dynamic> put(
-      String path, {
-        dynamic data,
-        bool isFormData = false,
-        Map<String, dynamic>? queryParameters,
-      }) async {
+    String path, {
+    dynamic data,
+    bool isFormData = false,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       if (isFormData) {
         data = FormData.fromMap(data as Map<String, dynamic>);

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:food_ordering_system/core/errors/error_message_model.dart';
-import 'package:food_ordering_system/core/errors/exceptions/exceptions.dart';
+import 'package:quick_mart/core/errors/error_message_model.dart';
+import 'package:quick_mart/core/errors/exceptions/exceptions.dart';
 
 /// A global Dio interceptor responsible for catching and transforming all
 /// HTTP errors before they reach the `DioConsumer`.
@@ -21,10 +21,10 @@ class ErrorInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     switch (err.type) {
-    // ==========================================
-    // 1. NETWORK & CONNECTION ERRORS
-    // ==========================================
-    // Using "fall-through" to catch all timeout/connection issues at once
+      // ==========================================
+      // 1. NETWORK & CONNECTION ERRORS
+      // ==========================================
+      // Using "fall-through" to catch all timeout/connection issues at once
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.sendTimeout:
@@ -32,9 +32,9 @@ class ErrorInterceptor extends Interceptor {
         {
           throw NetworkException();
         }
-    // ==========================================
-    // 2. SERVER RESPONSE ERRORS (4xx, 5xx)
-    // ==========================================
+      // ==========================================
+      // 2. SERVER RESPONSE ERRORS (4xx, 5xx)
+      // ==========================================
       case DioExceptionType.badResponse:
         {
           // The server replied, but with an error status code.
@@ -62,9 +62,9 @@ class ErrorInterceptor extends Interceptor {
           }
         }
 
-    // ==========================================
-    // 3. FALLBACK / UNKNOWN ERRORS
-    // ==========================================
+      // ==========================================
+      // 3. FALLBACK / UNKNOWN ERRORS
+      // ==========================================
       case DioExceptionType.cancel:
       case DioExceptionType.badCertificate:
       case DioExceptionType.unknown:

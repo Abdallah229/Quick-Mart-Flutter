@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/theming/themes/dark_theme.dart';
-import 'package:food_ordering_system/core/theming/themes/light_theme.dart';
-import 'package:food_ordering_system/features/menu/presentation/pages/main_shell_screen.dart';
+import 'package:quick_mart/core/theming/themes/dark_theme.dart';
+import 'package:quick_mart/core/theming/themes/light_theme.dart';
+import 'package:quick_mart/features/home/presentation/pages/main_shell_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:food_ordering_system/core/utils/hive_boxes.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
-import 'package:food_ordering_system/features/menu/presentation/pages/menu_screen.dart';
-import 'package:food_ordering_system/injection_container.dart' as di; // Aliased for clarity
+import 'package:quick_mart/core/utils/hive_boxes.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:quick_mart/features/home/presentation/pages/home_screen.dart';
+import 'package:quick_mart/injection_container.dart'
+    as di; // Aliased for clarity
 
 void main() async {
   // 1. Ensure Flutter's engine is fully initialized before we run async code
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         darkTheme: darkTheme,
-        title: 'Food Ordering App',
+        title: 'Quick Mart',
         debugShowCheckedModeBanner: false, // Hides the annoying debug banner
         theme: lightTheme,
         home: const MainShellScreen(),

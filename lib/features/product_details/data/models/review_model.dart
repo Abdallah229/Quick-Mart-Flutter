@@ -1,4 +1,4 @@
-import 'package:food_ordering_system/features/product_details/domain/entities/review.dart';
+import 'package:quick_mart/features/product_details/domain/entities/review.dart';
 
 /// The Data Layer representation of a [Review].
 ///

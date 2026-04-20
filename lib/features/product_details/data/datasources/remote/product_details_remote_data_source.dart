@@ -1,4 +1,4 @@
-import 'package:food_ordering_system/features/product_details/data/models/detailed_product_model.dart';
+import 'package:quick_mart/features/product_details/data/models/detailed_product_model.dart';
 
 /// Contract for fetching rich product data from the backend.
 abstract class ProductDetailsRemoteDataSource {

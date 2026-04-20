@@ -1,7 +1,7 @@
-import 'package:food_ordering_system/core/network/api_consumer.dart';
-import 'package:food_ordering_system/core/utils/api_endpoints.dart';
-import 'package:food_ordering_system/features/cart/data/datasources/remote/cart_remote_data_source.dart';
-import 'package:food_ordering_system/features/cart/data/models/order_model.dart';
+import 'package:quick_mart/core/network/api_consumer.dart';
+import 'package:quick_mart/core/utils/api_endpoints.dart';
+import 'package:quick_mart/features/cart/data/datasources/remote/cart_remote_data_source.dart';
+import 'package:quick_mart/features/cart/data/models/order_model.dart';
 
 /// The concrete implementation of [CartRemoteDataSource].
 ///

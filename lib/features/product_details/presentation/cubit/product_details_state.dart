@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
 
 /// The state representation for the Product Details feature.
 ///

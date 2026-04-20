@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/features/cart/domain/repositories/cart_repository.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/features/cart/domain/repositories/cart_repository.dart';
 
 /// Use Case for completely removing a specific item from the user's shopping cart.
 ///

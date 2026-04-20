@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:food_ordering_system/core/errors/exceptions/exceptions.dart';
-import 'package:food_ordering_system/features/product_details/data/datasources/local/product_details_local_data_source.dart';
-import 'package:food_ordering_system/features/product_details/data/models/detailed_product_model.dart';
+import 'package:quick_mart/core/errors/exceptions/exceptions.dart';
+import 'package:quick_mart/features/product_details/data/datasources/local/product_details_local_data_source.dart';
+import 'package:quick_mart/features/product_details/data/models/detailed_product_model.dart';
 import 'package:hive/hive.dart';
 
 class ProductDetailsLocalDataSourceImpl

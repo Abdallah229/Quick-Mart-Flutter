@@ -1,5 +1,5 @@
-import 'package:food_ordering_system/features/product_details/data/models/review_model.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/features/product_details/data/models/review_model.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
 
 /// The Data Layer representation of a [DetailedProduct].
 ///
@@ -50,8 +50,8 @@ class DetailedProductModel extends DetailedProduct {
 
     tags:
         (json['tags'] as List<dynamic>?)?.map((e) => e.toString()).toList() ??
-        [], category:     json['category'] as String? ?? 'general',
-
+        [],
+    category: json['category'] as String? ?? 'general',
   );
 
   Map<String, dynamic> toJson() {

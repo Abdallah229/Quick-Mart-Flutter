@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
 
 class ProductDetailsInfoPart extends StatelessWidget {
   final DetailedProduct product;

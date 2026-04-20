@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/product_details_image_part.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/product_details_info_part.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/product_details_image_part.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/product_details_info_part.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final DetailedProduct product;

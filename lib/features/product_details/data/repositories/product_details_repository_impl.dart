@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_ordering_system/core/errors/exceptions/exceptions.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/core/network/network_info.dart';
-import 'package:food_ordering_system/features/product_details/data/datasources/local/product_details_local_data_source.dart';
-import 'package:food_ordering_system/features/product_details/data/datasources/remote/product_details_remote_data_source.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
-import 'package:food_ordering_system/features/product_details/domain/repositories/product_details_repository.dart';
+import 'package:quick_mart/core/errors/exceptions/exceptions.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/core/network/network_info.dart';
+import 'package:quick_mart/features/product_details/data/datasources/local/product_details_local_data_source.dart';
+import 'package:quick_mart/features/product_details/data/datasources/remote/product_details_remote_data_source.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/features/product_details/domain/repositories/product_details_repository.dart';
 
 class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
   final NetworkInfo networkInfo;
@@ -31,7 +31,9 @@ class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
         // --- THE RESCUE MISSION ---
         // The API failed, but maybe we have it cached.
         try {
-          final cachedResult = await localDataSource.getCachedProductDetails(id);
+          final cachedResult = await localDataSource.getCachedProductDetails(
+            id,
+          );
           return Right(cachedResult);
         } on CacheException {
           // Both the API AND the Cache failed. Now we finally show the error.
@@ -41,12 +43,15 @@ class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
     }
     // If the user has no internet connection fetch the cached data.
     else {
-      try{
-        final result = await localDataSource.getCachedProductDetails(id) ;
-        return Right(result );
-      }
-      on CacheException {
-        return const Left(CacheFailure(message: 'No local Data found. Please connect to the internet'));
+      try {
+        final result = await localDataSource.getCachedProductDetails(id);
+        return Right(result);
+      } on CacheException {
+        return const Left(
+          CacheFailure(
+            message: 'No local Data found. Please connect to the internet',
+          ),
+        );
       }
     }
   }

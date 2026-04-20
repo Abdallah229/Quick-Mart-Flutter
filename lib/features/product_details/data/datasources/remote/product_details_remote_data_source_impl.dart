@@ -1,7 +1,7 @@
-import 'package:food_ordering_system/core/network/api_consumer.dart';
-import 'package:food_ordering_system/core/utils/api_endpoints.dart';
-import 'package:food_ordering_system/features/product_details/data/datasources/remote/product_details_remote_data_source.dart';
-import 'package:food_ordering_system/features/product_details/data/models/detailed_product_model.dart';
+import 'package:quick_mart/core/network/api_consumer.dart';
+import 'package:quick_mart/core/utils/api_endpoints.dart';
+import 'package:quick_mart/features/product_details/data/datasources/remote/product_details_remote_data_source.dart';
+import 'package:quick_mart/features/product_details/data/models/detailed_product_model.dart';
 
 class ProductDetailsRemoteDataSourceImpl
     implements ProductDetailsRemoteDataSource {

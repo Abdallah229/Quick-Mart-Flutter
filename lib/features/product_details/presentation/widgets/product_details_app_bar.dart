@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_cubit.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_state.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_cubit.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_state.dart';
 
 class ProductDetailsAppBar extends StatelessWidget
     implements PreferredSizeWidget {

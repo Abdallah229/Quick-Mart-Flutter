@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/core/widgets/loading_indicator.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_cubit.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_state.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/product_details_add_to_cart_button.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/product_details_app_bar.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/product_details_body.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/product_details_image_part.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/when_empty_product_details.dart';
-import 'package:food_ordering_system/features/product_details/presentation/widgets/when_product_details_error.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/core/widgets/loading_indicator.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_cubit.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_state.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/product_details_add_to_cart_button.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/product_details_app_bar.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/product_details_body.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/product_details_image_part.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/when_empty_product_details.dart';
+import 'package:quick_mart/features/product_details/presentation/widgets/when_product_details_error.dart';
 
 import '../../../../injection_container.dart';
 

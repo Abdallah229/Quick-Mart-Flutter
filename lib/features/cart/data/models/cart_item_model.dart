@@ -1,5 +1,5 @@
-import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
-import 'package:food_ordering_system/features/menu/data/models/product_model.dart';
+import 'package:quick_mart/features/cart/domain/entities/cart_item.dart';
+import 'package:quick_mart/features/home/data/models/product_model.dart';
 
 /// The Data Layer representation of a single item in the shopping cart.
 ///
@@ -7,10 +7,7 @@ import 'package:food_ordering_system/features/menu/data/models/product_model.dar
 /// Handles the specific quirk of the external API where product details
 /// and cart details (like quantity) are flattened into a single JSON object.
 class CartItemModel extends CartItem {
-  const CartItemModel({
-    required super.product,
-    required super.quantity,
-  });
+  const CartItemModel({required super.product, required super.quantity});
 
   /// Safely constructs a [CartItemModel] from a raw JSON map.
   ///

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/cart_action.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/core/utils/show_snack_bar.dart';
-import 'package:food_ordering_system/core/widgets/loading_indicator.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_state.dart';
-import 'package:food_ordering_system/features/cart/presentation/widgets/cart_app_bar.dart';
-import 'package:food_ordering_system/features/cart/presentation/widgets/cart_checkout_button.dart';
-import 'package:food_ordering_system/features/cart/presentation/widgets/cart_list.dart';
-import 'package:food_ordering_system/features/cart/presentation/widgets/when_cart_error.dart';
-import 'package:food_ordering_system/features/cart/presentation/widgets/when_empty_cart.dart';
+import 'package:quick_mart/core/enums/cart_action.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/core/utils/show_snack_bar.dart';
+import 'package:quick_mart/core/widgets/loading_indicator.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_state.dart';
+import 'package:quick_mart/features/cart/presentation/widgets/cart_app_bar.dart';
+import 'package:quick_mart/features/cart/presentation/widgets/cart_checkout_button.dart';
+import 'package:quick_mart/features/cart/presentation/widgets/cart_list.dart';
+import 'package:quick_mart/features/cart/presentation/widgets/when_cart_error.dart';
+import 'package:quick_mart/features/cart/presentation/widgets/when_empty_cart.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

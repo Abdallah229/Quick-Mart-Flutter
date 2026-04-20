@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_cubit.dart';
-import 'package:food_ordering_system/features/product_details/presentation/cubit/product_details_state.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_cubit.dart';
+import 'package:quick_mart/features/product_details/presentation/cubit/product_details_state.dart';
 
 import '../../../../core/utils/show_snack_bar.dart';
-import '../../../menu/domain/entities/product.dart';
+import '../../../home/domain/entities/product.dart';
 
 class ProductDetailsAddToCartButton extends StatefulWidget {
   const ProductDetailsAddToCartButton({super.key});
@@ -77,14 +77,19 @@ class _ProductDetailsAddToCartButtonState
                 ),
                 FilledButton(
                   onPressed: () async {
-                    if (context.read<CartCubit>().state.status == RequestState.loading) {
-                      return ;
+                    if (context.read<CartCubit>().state.status ==
+                        RequestState.loading) {
+                      return;
                     }
                     showSnackBar(
                       context: context,
-                      description: 'Added $_quantity ${state.product!.title} to cart',
+                      description:
+                          'Added $_quantity ${state.product!.title} to cart',
                     );
-                    await context.read<CartCubit>().add(state.product as Product, 1);
+                    await context.read<CartCubit>().add(
+                      state.product as Product,
+                      1,
+                    );
                   },
                   // TODO : implement the styling.
                   style: FilledButton.styleFrom(

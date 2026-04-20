@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/features/auth/domain/repositories/auth_repository.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/features/auth/domain/repositories/auth_repository.dart';
 import '../entities/user.dart';
 
 /// Use Case for retrieving the active user session from local storage.

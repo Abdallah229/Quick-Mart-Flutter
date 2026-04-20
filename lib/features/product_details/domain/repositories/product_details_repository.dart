@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
 
 /// Contract for the Product Details Repository.
 ///

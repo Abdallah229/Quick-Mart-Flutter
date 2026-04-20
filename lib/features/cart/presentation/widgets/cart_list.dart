@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
-import 'package:food_ordering_system/features/cart/presentation/widgets/cart_list_item.dart';
+import 'package:quick_mart/features/cart/domain/entities/cart_item.dart';
+import 'package:quick_mart/features/cart/presentation/widgets/cart_list_item.dart';
 
 class CartList extends StatelessWidget {
   const CartList({super.key, required this.items});
@@ -10,7 +10,7 @@ class CartList extends StatelessWidget {
     return ListView.builder(
       itemCount: items.length,
       padding: const EdgeInsets.symmetric(vertical: 8),
-      itemBuilder: (context,  index) {
+      itemBuilder: (context, index) {
         return CartListItem(item: items[index]);
       },
     );

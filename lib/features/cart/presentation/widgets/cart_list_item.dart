@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:quick_mart/features/cart/domain/entities/cart_item.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_cubit.dart';
 
 import 'cart_quantity_updating_button.dart';
 
@@ -38,7 +38,10 @@ class CartListItem extends StatelessWidget {
                 if (item.quantity == 1) {
                   context.read<CartCubit>().remove(item.product.id.toString());
                 } else {
-                  context.read<CartCubit>().updateQuantity(item.product, item.quantity - 1);
+                  context.read<CartCubit>().updateQuantity(
+                    item.product,
+                    item.quantity - 1,
+                  );
                 }
               },
             ),
@@ -50,7 +53,10 @@ class CartListItem extends StatelessWidget {
               icon: Icons.add,
               iconColor: theme.colorScheme.primary,
               onPress: () {
-                context.read<CartCubit>().updateQuantity(item.product, item.quantity + 1);
+                context.read<CartCubit>().updateQuantity(
+                  item.product,
+                  item.quantity + 1,
+                );
               },
             ),
           ],

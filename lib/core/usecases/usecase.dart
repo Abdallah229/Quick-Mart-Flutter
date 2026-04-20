@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
 
 /// Base UseCase class to enforce a standard contract across all domain use cases.
 ///

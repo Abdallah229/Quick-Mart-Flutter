@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
 import '../entities/user.dart';
 
 /// The contract for the Authentication Feature's Data Layer.

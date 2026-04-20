@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
+import 'package:quick_mart/features/home/domain/entities/product.dart';
 
 /// Represents a single food item added to the user's shopping cart.
 ///
@@ -14,10 +14,7 @@ class CartItem extends Equatable {
   /// The number of this specific item the user wishes to purchase.
   final int quantity;
 
-  const CartItem({
-    required this.product,
-    required this.quantity,
-  });
+  const CartItem({required this.product, required this.quantity});
 
   @override
   List<Object?> get props => [product, quantity];

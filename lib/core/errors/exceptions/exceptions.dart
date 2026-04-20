@@ -1,4 +1,4 @@
-import 'package:food_ordering_system/core/errors/error_message_model.dart';
+import 'package:quick_mart/core/errors/error_message_model.dart';
 
 /// Exception thrown when the remote server returns an error status code
 /// (e.g., 400 Bad Request, 404 Not Found, 500 Internal Server Error).

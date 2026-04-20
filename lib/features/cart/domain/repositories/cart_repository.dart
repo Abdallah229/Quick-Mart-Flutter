@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart' hide Order;
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/order.dart';
-import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/features/cart/domain/entities/cart_item.dart';
+import 'package:quick_mart/features/cart/domain/entities/order.dart';
+import 'package:quick_mart/features/home/domain/entities/product.dart';
 
 /// The contract for the Cart Feature's Data Layer.
 ///

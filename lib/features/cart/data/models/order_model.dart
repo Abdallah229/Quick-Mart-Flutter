@@ -1,5 +1,5 @@
-import 'package:food_ordering_system/features/cart/domain/entities/order.dart';
-import 'package:food_ordering_system/features/cart/data/models/cart_item_model.dart';
+import 'package:quick_mart/features/cart/domain/entities/order.dart';
+import 'package:quick_mart/features/cart/data/models/cart_item_model.dart';
 
 /// The Data Layer representation of a finalized order.
 ///

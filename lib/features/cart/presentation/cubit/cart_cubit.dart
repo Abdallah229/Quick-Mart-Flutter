@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/cart_action.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/cart/domain/usecases/add_to_cart.dart';
-import 'package:food_ordering_system/features/cart/domain/usecases/checkout_order.dart';
-import 'package:food_ordering_system/features/cart/domain/usecases/get_cart_items.dart';
-import 'package:food_ordering_system/features/cart/domain/usecases/remove_cart_item.dart';
-import 'package:food_ordering_system/features/cart/domain/usecases/update_item_quantity.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_state.dart';
-import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
+import 'package:quick_mart/core/enums/cart_action.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/cart/domain/usecases/add_to_cart.dart';
+import 'package:quick_mart/features/cart/domain/usecases/checkout_order.dart';
+import 'package:quick_mart/features/cart/domain/usecases/get_cart_items.dart';
+import 'package:quick_mart/features/cart/domain/usecases/remove_cart_item.dart';
+import 'package:quick_mart/features/cart/domain/usecases/update_item_quantity.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_state.dart';
+import 'package:quick_mart/features/home/domain/entities/product.dart';
 
 /// The State Management controller for the Cart feature.
 ///

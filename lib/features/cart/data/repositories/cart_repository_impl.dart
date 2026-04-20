@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart' hide Order;
-import 'package:food_ordering_system/core/errors/exceptions/exceptions.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/core/network/network_info.dart';
-import 'package:food_ordering_system/features/cart/data/datasources/local/cart_local_data_source.dart';
-import 'package:food_ordering_system/features/cart/data/datasources/remote/cart_remote_data_source.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/order.dart';
-import 'package:food_ordering_system/features/cart/domain/repositories/cart_repository.dart';
-import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
-import 'package:food_ordering_system/features/cart/data/models/order_model.dart';
-import 'package:food_ordering_system/features/cart/data/models/cart_item_model.dart';
+import 'package:quick_mart/core/errors/exceptions/exceptions.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/core/network/network_info.dart';
+import 'package:quick_mart/features/cart/data/datasources/local/cart_local_data_source.dart';
+import 'package:quick_mart/features/cart/data/datasources/remote/cart_remote_data_source.dart';
+import 'package:quick_mart/features/cart/domain/entities/cart_item.dart';
+import 'package:quick_mart/features/cart/domain/entities/order.dart';
+import 'package:quick_mart/features/cart/domain/repositories/cart_repository.dart';
+import 'package:quick_mart/features/home/domain/entities/product.dart';
+import 'package:quick_mart/features/cart/data/models/order_model.dart';
+import 'package:quick_mart/features/cart/data/models/cart_item_model.dart';
 
 /// The concrete implementation of [CartRepository].
 ///
@@ -62,7 +62,9 @@ class CartRepositoryImpl implements CartRepository {
       final List<CartItem> updatedItems = List.from(currentCart.items);
 
       // Check if item already exists in the cart
-      final existingIndex = updatedItems.indexWhere((item) => item.product.id == product.id);
+      final existingIndex = updatedItems.indexWhere(
+        (item) => item.product.id == product.id,
+      );
 
       if (existingIndex >= 0) {
         // Increase quantity of existing item
@@ -77,7 +79,10 @@ class CartRepositoryImpl implements CartRepository {
       }
 
       // Recalculate the cart total
-      final double newTotal = updatedItems.fold(0.0, (sum, item) => sum + (item.product.price * item.quantity));
+      final double newTotal = updatedItems.fold(
+        0.0,
+        (sum, item) => sum + (item.product.price * item.quantity),
+      );
 
       // Save the updated cart to Hive
       final updatedOrder = OrderModel(
@@ -94,7 +99,9 @@ class CartRepositoryImpl implements CartRepository {
 
       return const Right(unit);
     } on CacheException {
-      return const Left(CacheFailure(message: 'Failed to save current item to cart.'));
+      return const Left(
+        CacheFailure(message: 'Failed to save current item to cart.'),
+      );
     }
   }
 
@@ -109,7 +116,9 @@ class CartRepositoryImpl implements CartRepository {
       try {
         final cart = await _getLocalCart();
         if (cart.items.isEmpty) {
-          return const Left(CacheFailure(message: 'Cannot checkout an empty cart.'));
+          return const Left(
+            CacheFailure(message: 'Cannot checkout an empty cart.'),
+          );
         }
 
         // Future implementation: await remoteDataSource.checkoutCart(cart);
@@ -121,10 +130,16 @@ class CartRepositoryImpl implements CartRepository {
       } on ServerException catch (e) {
         return Left(ServerFailure(message: e.errorModel.message));
       } on CacheException {
-        return const Left(CacheFailure(message: 'Failed to process your cart.'));
+        return const Left(
+          CacheFailure(message: 'Failed to process your cart.'),
+        );
       }
     } else {
-      return const Left(NetworkFailure(message: 'You must be connected to the internet to checkout.'));
+      return const Left(
+        NetworkFailure(
+          message: 'You must be connected to the internet to checkout.',
+        ),
+      );
     }
   }
 
@@ -165,7 +180,10 @@ class CartRepositoryImpl implements CartRepository {
           .where((item) => item.product.id != productId)
           .toList();
 
-      final double newTotal = updatedItems.fold(0.0, (sum, item) => sum + (item.product.price * item.quantity));
+      final double newTotal = updatedItems.fold(
+        0.0,
+        (sum, item) => sum + (item.product.price * item.quantity),
+      );
 
       final updatedOrder = OrderModel(
         id: currentCart.id,
@@ -177,7 +195,9 @@ class CartRepositoryImpl implements CartRepository {
       await localDataSource.saveCart(order: updatedOrder);
       return const Right(unit);
     } on CacheException {
-      return const Left(CacheFailure(message: 'Failed to remove current item from cart.'));
+      return const Left(
+        CacheFailure(message: 'Failed to remove current item from cart.'),
+      );
     }
   }
 
@@ -194,7 +214,9 @@ class CartRepositoryImpl implements CartRepository {
       final currentCart = await _getLocalCart();
       final List<CartItem> updatedItems = List.from(currentCart.items);
 
-      final existingIndex = updatedItems.indexWhere((item) => item.product.id == product.id);
+      final existingIndex = updatedItems.indexWhere(
+        (item) => item.product.id == product.id,
+      );
 
       if (existingIndex >= 0) {
         if (quantity <= 0) {
@@ -208,7 +230,10 @@ class CartRepositoryImpl implements CartRepository {
         }
       }
 
-      final double newTotal = updatedItems.fold(0.0, (sum, item) => sum + (item.product.price * item.quantity));
+      final double newTotal = updatedItems.fold(
+        0.0,
+        (sum, item) => sum + (item.product.price * item.quantity),
+      );
 
       final updatedOrder = OrderModel(
         id: currentCart.id,
@@ -220,7 +245,9 @@ class CartRepositoryImpl implements CartRepository {
       await localDataSource.saveCart(order: updatedOrder);
       return const Right(unit);
     } on CacheException {
-      return const Left(CacheFailure(message: 'Failed to update item quantity.'));
+      return const Left(
+        CacheFailure(message: 'Failed to update item quantity.'),
+      );
     }
   }
 }

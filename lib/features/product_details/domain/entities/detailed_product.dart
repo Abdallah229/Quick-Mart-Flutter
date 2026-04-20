@@ -1,5 +1,5 @@
-import 'package:food_ordering_system/features/menu/domain/entities/product.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/review.dart';
+import 'package:quick_mart/features/home/domain/entities/product.dart';
+import 'package:quick_mart/features/product_details/domain/entities/review.dart';
 
 /// A Domain entity representing a fully detailed product.
 ///

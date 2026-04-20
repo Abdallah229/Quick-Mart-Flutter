@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart' hide Order;
-import 'package:food_ordering_system/features/cart/domain/entities/order.dart';
-import 'package:food_ordering_system/core/errors/failures/failures.dart';
-import 'package:food_ordering_system/features/cart/domain/repositories/cart_repository.dart';
+import 'package:quick_mart/features/cart/domain/entities/order.dart';
+import 'package:quick_mart/core/errors/failures/failures.dart';
+import 'package:quick_mart/features/cart/domain/repositories/cart_repository.dart';
 
 /// Use Case for finalizing the current cart and processing the transaction.
 ///

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_cubit.dart';
-import 'package:food_ordering_system/features/cart/presentation/cubit/cart_state.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:quick_mart/features/cart/presentation/cubit/cart_state.dart';
 
 class CartCheckoutButton extends StatelessWidget {
   const CartCheckoutButton({super.key});
@@ -60,7 +60,10 @@ class CartCheckoutButton extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primary,
                     foregroundColor: theme.colorScheme.onPrimary,
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

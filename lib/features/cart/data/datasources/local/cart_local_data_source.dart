@@ -1,4 +1,4 @@
-import 'package:food_ordering_system/features/cart/data/models/order_model.dart';
+import 'package:quick_mart/features/cart/data/models/order_model.dart';
 
 /// The contract for local data operations in the Cart feature.
 ///

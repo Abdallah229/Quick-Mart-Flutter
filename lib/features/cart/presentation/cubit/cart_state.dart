@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:food_ordering_system/core/enums/cart_action.dart';
-import 'package:food_ordering_system/core/enums/request_state.dart';
-import 'package:food_ordering_system/features/cart/domain/entities/cart_item.dart';
+import 'package:quick_mart/core/enums/cart_action.dart';
+import 'package:quick_mart/core/enums/request_state.dart';
+import 'package:quick_mart/features/cart/domain/entities/cart_item.dart';
 
 /// The unified state object for the Cart feature.
 ///

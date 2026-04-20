@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_ordering_system/core/constants/app_categories.dart';
-import 'package:food_ordering_system/core/utils/category_icon_mapper.dart';
-import 'package:food_ordering_system/features/menu/presentation/cubit/menu_cubit.dart';
-
+import 'package:quick_mart/core/constants/app_categories.dart';
+import 'package:quick_mart/core/utils/category_icon_mapper.dart';
+import 'package:quick_mart/features/home/presentation/cubit/menu_cubit.dart';
 
 // TODO : fix when choosing a filter that filter be presented in the category filter row
 class ExploreScreen extends StatelessWidget {
@@ -17,11 +16,16 @@ class ExploreScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     // We filter out the 'All' category because the Explore screen is for specific discovery
-    final categories = AppCategories.items.where((c) => c.slug != 'all').toList();
+    final categories = AppCategories.items
+        .where((c) => c.slug != 'all')
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Explore', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Explore',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: GridView.builder(
@@ -30,14 +34,17 @@ class ExploreScreen extends StatelessWidget {
           crossAxisCount: 3, // 3 columns for a neat directory layout
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio: 0.85, // Slightly taller than a square to fit the text
+          childAspectRatio:
+              0.85, // Slightly taller than a square to fit the text
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final category = categories[index];
 
           return Material(
-            color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+            color: theme.colorScheme.surfaceContainerHighest.withValues(
+              alpha: 0.3,
+            ),
             borderRadius: BorderRadius.circular(16),
             child: InkWell(
               borderRadius: BorderRadius.circular(16),

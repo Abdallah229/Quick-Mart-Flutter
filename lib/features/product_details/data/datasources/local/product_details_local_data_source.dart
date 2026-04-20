@@ -1,4 +1,4 @@
-import 'package:food_ordering_system/features/product_details/data/models/detailed_product_model.dart';
+import 'package:quick_mart/features/product_details/data/models/detailed_product_model.dart';
 
 /// Contract for managing the local offline cache of detailed products.
 abstract class ProductDetailsLocalDataSource {

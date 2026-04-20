@@ -1,11 +1,14 @@
-import 'package:food_ordering_system/features/menu/domain/entities/category_item.dart';
+import 'package:quick_mart/features/home/domain/entities/category_item.dart';
 
 /// Localized cache of available market categories.
 ///
 /// Used to populate the horizontal scrollable UI on the Home Screen.
 class AppCategories {
   AppCategories._();
-  static const CategoryItem allCategory = CategoryItem(slug: 'all', name: 'All');
+  static const CategoryItem allCategory = CategoryItem(
+    slug: 'all',
+    name: 'All',
+  );
   static const List<CategoryItem> items = [
     // Our custom "All" category to fetch the root products endpoint
     CategoryItem(slug: 'all', name: 'All'),

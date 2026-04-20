@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:food_ordering_system/features/product_details/domain/entities/detailed_product.dart';
-import 'package:food_ordering_system/features/product_details/domain/repositories/product_details_repository.dart';
+import 'package:quick_mart/features/product_details/domain/entities/detailed_product.dart';
+import 'package:quick_mart/features/product_details/domain/repositories/product_details_repository.dart';
 import '../../../../core/errors/failures/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 
@@ -9,7 +9,8 @@ import '../../../../core/usecases/usecase.dart';
 ///
 /// This class encapsulates the business rule for fetching product details,
 /// abstracting the data retrieval process away from the presentation layer.
-class GetProductDetailsUseCase implements UseCase<DetailedProduct, GetProductDetailsParams> {
+class GetProductDetailsUseCase
+    implements UseCase<DetailedProduct, GetProductDetailsParams> {
   final ProductDetailsRepository repository;
 
   /// Constructs the [GetProductDetailsUseCase] with a required [ProductDetailsRepository].
@@ -21,7 +22,9 @@ class GetProductDetailsUseCase implements UseCase<DetailedProduct, GetProductDet
   /// Returns an [Either] containing a [Failure] on the left if the operation
   /// fails, or the requested [DetailedProduct] on the right upon success.
   @override
-  Future<Either<Failure, DetailedProduct>> call(GetProductDetailsParams params) async {
+  Future<Either<Failure, DetailedProduct>> call(
+    GetProductDetailsParams params,
+  ) async {
     return await repository.getProductDetails(params.id);
   }
 }

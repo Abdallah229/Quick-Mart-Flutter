@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_system/core/widgets/loading_indicator.dart';
+import 'package:quick_mart/core/widgets/loading_indicator.dart';
 
 class ProductDetailsImagePart extends StatefulWidget {
   final List<String> images;
@@ -35,14 +35,17 @@ class _ProductDetailsImagePartState extends State<ProductDetailsImagePart> {
       children: [
         // 1. Image Carousel with responsive AspectRatio
         AspectRatio(
-          aspectRatio: 4 / 3, // Width is 4, Height is 3. Adjust as needed (e.g., 1/1 for squares)
+          aspectRatio:
+              4 /
+              3, // Width is 4, Height is 3. Adjust as needed (e.g., 1/1 for squares)
           child: PageView.builder(
             itemCount: widget.images.length,
             onPageChanged: _changeIndex,
             itemBuilder: (context, index) {
               return Image.network(
                 widget.images[index], // Fixed: using index
-                fit: BoxFit.contain, // Note: watch out if this crops your food images too much!
+                fit: BoxFit
+                    .contain, // Note: watch out if this crops your food images too much!
                 matchTextDirection: true,
                 loadingBuilder: (context, child, loadingProgress) {
                   // Fixed: Return the actual image when done loading
@@ -64,7 +67,7 @@ class _ProductDetailsImagePartState extends State<ProductDetailsImagePart> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             widget.images.length,
-                (index) => _buildDot(index: index, ctx: context),
+            (index) => _buildDot(index: index, ctx: context),
           ),
         ),
       ],
