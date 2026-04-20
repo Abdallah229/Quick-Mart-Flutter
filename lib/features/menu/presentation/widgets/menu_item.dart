@@ -21,7 +21,6 @@ class MenuItem extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
-              width: 1,
               color: theme.colorScheme.outlineVariant,
             ),
             borderRadius: BorderRadius.circular(16),
@@ -46,7 +45,7 @@ class MenuItem extends StatelessWidget {
                   ),
                   child: Image.network(
                     product.thumbnailURL,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;
                       return const LoadingIndicator();
@@ -80,7 +79,6 @@ class MenuItem extends StatelessWidget {
                     // 3. Price and Add to Cart Action Row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           '\$${product.price.toStringAsFixed(2)}',

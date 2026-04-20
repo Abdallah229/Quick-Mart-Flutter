@@ -7,7 +7,7 @@ import 'package:food_ordering_system/features/menu/data/models/product_model.dar
 /// that it can call these methods and receive a List of models back.
 abstract class MenuRemoteDataSource {
   /// Fetches a paginated list of products from the remote server.
-  Future<List<ProductModel>> getMenuItems({required int page});
+  Future<List<ProductModel>> getMenuItems({required int page , String ? categorySlug});
 
   /// Queries the remote server for products matching a specific text string.
   Future<List<ProductModel>> searchMenuItems({required String query});

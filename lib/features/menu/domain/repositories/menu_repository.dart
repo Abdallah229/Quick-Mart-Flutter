@@ -14,11 +14,17 @@ abstract class MenuRepository {
   /// Requires a [page] parameter to handle infinite scrolling or pagination.
   /// Returns a [Future] because data fetching is asynchronous. The result is
   /// either a [Failure] (Server/Network/Cache) or a successful `List<Product>`.
-  Future<Either<Failure, List<Product>>> getMenuItems({required int page});
+  Future<Either<Failure, List<Product>>> getMenuItems({
+    required int page,
+    String? categorySlug,
+  });
 
   /// Searches the menu for items matching the specific text [query].
   ///
   /// Returns a [Future] containing either a [Failure] or a `List<Product>`
   /// containing all items that match the search string.
-  Future<Either<Failure, List<Product>>> searchMenuItems({required String query});
+  Future<Either<Failure, List<Product>>> searchMenuItems({
+    required String query,
+    required String categorySlug,
+  });
 }

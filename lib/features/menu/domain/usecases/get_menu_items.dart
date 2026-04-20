@@ -21,7 +21,10 @@ class GetMenuItems {
   /// like a function (e.g., `final result = await getMenuItems(page: 1);`).
   /// Forwards the [page] parameter to the repository and returns either a
   /// [Failure] or a successful `List<Product>`.
-  Future<Either<Failure, List<Product>>> call({required int page}) async {
-    return await repository.getMenuItems(page: page);
+  Future<Either<Failure, List<Product>>> call({
+    required int page,
+    String? categorySlug,
+  }) async {
+    return await repository.getMenuItems(page: page , categorySlug: categorySlug);
   }
 }

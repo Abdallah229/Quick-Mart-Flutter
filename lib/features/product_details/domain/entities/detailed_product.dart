@@ -36,6 +36,7 @@ class DetailedProduct extends Product {
     required this.stock,
     required this.reviews,
     required this.tags,
+    required super.category,
   });
 
   @override

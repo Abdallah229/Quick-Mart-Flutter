@@ -15,15 +15,21 @@ class MenuRemoteDataSourceImp implements MenuRemoteDataSource {
   MenuRemoteDataSourceImp({required this.apiConsumer});
 
   @override
-  Future<List<ProductModel>> getMenuItems({required int page}) async {
+  Future<List<ProductModel>> getMenuItems({
+    required int page,
+    String? categorySlug,
+  }) async {
     // 1. Calculate pagination logic for DummyJSON
     const int limit = 10;
     final int skip = (page - 1) * limit;
-
+    String url = ApiEndpoints.products;
+    if (categorySlug != null && categorySlug != 'all') {
+      url = '$url/category/$categorySlug';
+    }
     // 2. Make the API call
     final response =
         await apiConsumer.get(
-              ApiEndpoints.food,
+              url,
               queryParameters: {'limit': limit, 'skip': skip},
             )
             as Map<String, dynamic>;

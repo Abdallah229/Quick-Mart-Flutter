@@ -11,7 +11,6 @@ class ApiEndpoints {
   // ==========================================
   // MENU FEATURE ENDPOINTS
   // ==========================================
-  static const String food = 'products/category/groceries';
   static const String products = 'products';
   static const String searchProducts = 'products/search';
 
