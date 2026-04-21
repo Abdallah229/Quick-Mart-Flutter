@@ -68,7 +68,7 @@ class ProductDetailsInfoPart extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         Text(
-          '${product.price} EGP',
+          '${product.price} \$',
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
             color: theme.colorScheme.primary,

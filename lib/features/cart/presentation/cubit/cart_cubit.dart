@@ -30,6 +30,10 @@ class CartCubit extends Cubit<CartState> {
     required this.checkoutUseCase,
   }) : super(const CartState());
 
+  int getTotalCartItems() {
+    return state.items.fold(0, (sum, curr) => sum + curr.quantity);
+  }
+
   /// Fetches the current active cart from the database.
   ///
   /// This acts as the single source of truth synchronization method. It completely

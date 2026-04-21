@@ -4,6 +4,8 @@ import 'package:quick_mart/core/constants/app_categories.dart';
 import 'package:quick_mart/core/utils/category_icon_mapper.dart';
 import 'package:quick_mart/features/home/presentation/cubit/menu_cubit.dart';
 
+import '../../../../core/widgets/responsive_layout.dart';
+
 // TODO : fix when choosing a filter that filter be presented in the category filter row
 class ExploreScreen extends StatelessWidget {
   // This callback allows us to talk to the BottomNavigationBar in the Shell
@@ -14,28 +16,28 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final categories = AppCategories.items.where((c) => c.slug != 'all').toList();
 
-    // We filter out the 'All' category because the Explore screen is for specific discovery
-    final categories = AppCategories.items
-        .where((c) => c.slug != 'all')
-        .toList();
+    // 🚀 RESTORED: Dynamic Grid Scaling
+    final isTablet = ResponsiveLayout.isTablet(context);
+    final isDesktop = ResponsiveLayout.isDesktop(context);
+
+    int columns = 3; // 3 looks best for categories on mobile
+    if (isTablet) columns = 5;
+    if (isDesktop) columns = 7;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Explore',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: const Text('Explore', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, // 3 columns for a neat directory layout
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: columns, // 🚀 Applied here!
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio:
-              0.85, // Slightly taller than a square to fit the text
+          childAspectRatio: 0.85,
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {

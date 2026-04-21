@@ -49,6 +49,7 @@ app.*.map.json
 # NEVER commit environment variables or secrets
 .env
 .env*
+!.env.example
 
 # =========================
 # Local Database (Hive)
